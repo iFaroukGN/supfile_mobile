@@ -19,8 +19,6 @@ import retrofit2.Response;
 import tg.geek228.supfile.Activities.UserProfileActivity;
 import tg.geek228.supfile.Adapter.ViewPagerAdapter;
 import tg.geek228.supfile.Core.Networking.Manager.NetworkManager;
-import tg.geek228.supfile.Fragment.HomeView;
-import tg.geek228.supfile.Fragment.ProfileView;
 import tg.geek228.supfile.Model.User;
 
 public class MainActivity extends AppCompatActivity {

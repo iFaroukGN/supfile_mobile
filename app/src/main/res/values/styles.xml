@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="customProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">#00C6C4</item>
+        <item name="colorControlHighlight">#00C6C4</item>
+        <item name="android:progressDrawable">@drawable/custom_progress</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
 </resources>

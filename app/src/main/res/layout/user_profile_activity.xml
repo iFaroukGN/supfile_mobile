@@ -7,8 +7,11 @@
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/topview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -20,37 +23,58 @@
             <include
                 android:id="@+id/app_bar"
                 layout="@layout/toolbar"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:layout_scrollFlags="scroll|enterAlways" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/background_gradient">
+                android:background="@drawable/background_gradient"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_image"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/account_circle"/>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/account_circle" />
 
                 <TextView
                     android:id="@+id/user_name"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="40dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="John Doe"/>
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="0dp"
+                    android:text="John Doe" />
 
             </LinearLayout>
 
 
         </android.support.design.widget.AppBarLayout>
 
-
     </android.support.design.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="112dp">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:progress="25"
+            style="@style/customProgressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
