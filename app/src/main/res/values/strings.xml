@@ -2,6 +2,7 @@
     <string name="app_name">SupFile</string>
     <string name="facebook_app_id">1691574820928365</string>
     <string name="fb_login_protocol_scheme">fb1691574820928365</string>
+    <string name="logout">Logout</string>
 
 
 </resources>

@@ -1,13 +1,21 @@
 package tg.geek228.supfile.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import tg.geek228.supfile.Activities.Login.LoginActity;
+import tg.geek228.supfile.Core.Networking.Manager.NetworkManager;
 import tg.geek228.supfile.R;
 
 public class UserProfileActivity extends AppCompatActivity {
@@ -41,6 +49,42 @@ public class UserProfileActivity extends AppCompatActivity {
             textView.setTextColor(getApplicationContext().getColor(R.color.white));
         }
 
+    }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.user_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.disconnect) {
+
+            NetworkManager networkManager = new NetworkManager();
+
+            networkManager.getService().logout().enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.clear();
+                    editor.commit();
+                    startActivity(new Intent(UserProfileActivity.this, LoginActity.class));
+                    System.out.println("user is loged out ... ");
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+
+                }
+            });
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
