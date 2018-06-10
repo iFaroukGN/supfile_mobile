@@ -1,4 +1,9 @@
 package tg.geek228.supfile.Interface;
 
-public class OnItemClickListener {
+import android.view.View;
+
+public interface OnItemClickListener {
+    void onCLick(View view, int position);
+
+    void onLongClick(View view, int position);
 }

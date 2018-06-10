@@ -4,12 +4,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +30,7 @@ import tg.geek228.supfile.R;
 public class UserProfileActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
-
+    private GoogleSignInClient mGoogleSignInClient;
     private TextView textView;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +42,13 @@ public class UserProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         pref = getApplicationContext().getSharedPreferences("USERSETTING", 0);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,7 +89,13 @@ public class UserProfileActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = pref.edit();
 
                     editor.clear();
+
                     editor.commit();
+
+                    LoginManager.getInstance().logOut();
+
+                    mGoogleSignInClient.signOut();
+
                     startActivity(new Intent(UserProfileActivity.this, LoginActity.class));
                     System.out.println("user is loged out ... ");
                 }

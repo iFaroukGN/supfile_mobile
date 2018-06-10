@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="4dp">
+            android:elevation="10dp">
 
             <include
                 android:id="@+id/app_bar"
@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_gradient"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:elevation="10dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_image"
@@ -55,13 +56,24 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+    <TextView
+        android:id="@+id/storageTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="207dp"
+        android:text="30 GB"
+        android:textSize="60dp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="112dp">
-
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="100dp"
+        android:id="@+id/storageLayout">
 
         <ProgressBar
             android:id="@+id/progressBar4"
@@ -75,6 +87,61 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+
+        <ImageView
+            android:id="@+id/used_icon"
+            android:layout_below="@+id/progressBar4"
+            android:layout_marginTop="15dp"
+            android:layout_height="24dp"
+            android:layout_width="24dp"
+            android:background="@drawable/storage_used"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/used_storage"
+            android:layout_below="@+id/progressBar4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="17dp"
+            android:layout_toRightOf="@+id/used_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/storageUsed"/>
+
+        <ImageView
+            android:id="@+id/used_available"
+            android:layout_below="@+id/progressBar4"
+            android:layout_height="24dp"
+            android:layout_width="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/used_storage"
+            android:background="@drawable/storage_available"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:layout_below="@+id/progressBar4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@+id/used_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/available"/>
+
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/floating_button"
+        style="@style/Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/round_container"
+        android:elevation="0dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Acheter du stockage"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

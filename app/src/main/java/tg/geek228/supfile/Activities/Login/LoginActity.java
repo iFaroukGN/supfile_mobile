@@ -107,18 +107,21 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
 
                         if(response.code() == 200){
                             startActivity(new Intent(LoginActity.this,MainActivity.class));
-                            user.getToken();
+
+                            user.setId(response.body().getId());
+                            user.setToken(response.body().getToken());
 
                             SharedPreferences.Editor editor = pref.edit();
                             stringAcessToken = user.getToken();
 
                             editor.putString("accessToken",stringAcessToken);
+                            editor.putString("userID",user.getId().toString());
                             editor.putString("username",(emailEdt.getText().toString()).split("@")[0]);
                             editor.putString("email", emailEdt.getText().toString());
                             editor.commit();
+                        } else {
+                            Toast.makeText(LoginActity.this, "Wrong credential",Toast.LENGTH_SHORT).show();
                         }
-
-                        System.out.println(" login result response... " + response.body().getToken());
 
                     }
 
@@ -173,8 +176,8 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
                                     editor.putString("accessToken",stringAcessToken);
                                     editor.putString("username",name);
                                     editor.putString("email",email);
+                                    editor.commit();
 
-                                    Toast.makeText(getApplicationContext(), " "+email, Toast.LENGTH_SHORT).show();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -197,21 +200,6 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
                 Toast.makeText(getApplicationContext(), ""+error, Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void getUserProfile(AccessToken currentAccessToken) {
-        GraphRequest request = GraphRequest.newMeRequest(
-                currentAccessToken,
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-
-                    }
-                });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,email,picture.width(200)");
-        request.setParameters(parameters);
-        request.executeAsync();
     }
 
     @Override
@@ -257,7 +245,9 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
 
             startActivity(new Intent(LoginActity.this,MainActivity.class));
 
-        }else {
+        }
+
+        /*else {
 
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
@@ -273,7 +263,7 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
                 System.out.println(TAG+" ... "+personName);
             }
 
-        }
+        }*/
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
@@ -283,11 +273,13 @@ public class LoginActity extends AppCompatActivity implements View.OnClickListen
 
             SharedPreferences.Editor editor = pref.edit();
 
-            editor.putString("accessToken",account.getIdToken().toString());
+            editor.putString("accessToken",account.getEmail().toString());
             editor.putString("username",account.getDisplayName());
             editor.putString("email",account.getEmail());
 
             editor.commit();
+
+            startActivity(new Intent(LoginActity.this,MainActivity.class));
 
             System.out.println(TAG+" ... "+account.getDisplayName());
 
