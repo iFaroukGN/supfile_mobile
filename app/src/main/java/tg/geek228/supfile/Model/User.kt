@@ -9,15 +9,14 @@ class User {
     var username: String
     var email: String
     var googleEmail: String
-    var facebookEmail: String
     var password: String
     var token: String
 
     init {
+        this.id = 0
         this.email = ""
         this.username = ""
         this.googleEmail = ""
-        this.facebookEmail = ""
         this.password = ""
         this.token = ""
     }
@@ -38,7 +37,6 @@ class User {
     constructor(userName: String, userEmail: String, facebookEmail:String, googleEmail:String ,userPassword: String) {
         this.username = userName
         this.email = userEmail
-        this.facebookEmail = facebookEmail
         this.googleEmail = googleEmail
         this.password = userPassword
     }
@@ -47,4 +45,10 @@ class User {
         this.email = userEmail;
         this.password = userPassword;
     }
+
+    override fun toString(): String {
+        return "User(id=$id, username='$username', email='$email', googleEmail='$googleEmail', password='$password', token='$token')"
+    }
+
+
 }

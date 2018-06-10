@@ -2,6 +2,10 @@
     <string name="app_name">SupFile</string>
     <string name="facebook_app_id">1691574820928365</string>
     <string name="fb_login_protocol_scheme">fb1691574820928365</string>
-
-
+    <string name="logout">Logout</string>
+    <string name="storageUsed">Used</string>
+    <string name="available">Available</string>
+    <string name="askPermTitle">Supfile</string>
+    <string name="RWPermissionDenied">Vous n\'avez pas authorisé supfile a ecrire sur votre stockage</string>
+    <string name="RWPermission">Autorisez supfile a écrire sur votre stokage</string>
 </resources>

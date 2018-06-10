@@ -17,17 +17,18 @@ interface UserService {
     fun login( @Body user:User) : Call<User>
 
 
-    //get users
-    @GET(APIConstant.USERS_ENDPOINT)
+    //log the user out
+    @GET(APIConstant.LOGOUT_ENDPOINT)
     @Headers(
             "Accept: application/json",
             "Content-type:application/json"
     )
-    fun users(): Call<List<User>>
+    fun logout(): Call<String>
+
 
 
     //create users
-   @POST(APIConstant.USERS_ENDPOINT)
+    @POST(APIConstant.USERS_ENDPOINT)
     @Headers(
             "Accept: application/json",
             "Content-type:application/json"

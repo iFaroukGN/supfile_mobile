@@ -29,7 +29,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-
+    implementation 'com.github.clans:fab:1.6.4'
     /*Also we need to indicate to Retrofit which converter it should use to convert a JSON
      **response into a Java (Kotlin) class and I’m going to use Moshi as it has better performance than Gson:*/
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
